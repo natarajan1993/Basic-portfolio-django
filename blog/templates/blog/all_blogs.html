@@ -1,3 +1,5 @@
+{% load staticfiles %}
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -6,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>All Blogs</title>
+    <title>Nate's Blogs</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
 
@@ -34,27 +36,27 @@
     <link href="album.css" rel="stylesheet">
   </head>
   <body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">Nate Mahalingam</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Github</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Resume</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link active" href="#">Blog</a>
-                </li>
-              </ul>
-            </div>
-          </nav>
-    </header>
+      <header>
+          <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+              <a class="navbar-brand" href="{% url 'job-home' %}">Nate Mahalingam</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                  <li class="nav-item">
+                    <a class="nav-link" href="https://www.github.com/natarajan1993">Github</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% static 'resume.pdf' %}">Resume</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" href="{% url 'all-blogs' %}">Blog</a>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+      </header>
 
 <main role="main">
     <div class="container">
@@ -64,7 +66,7 @@
         <h2>Latest Posts</h2>
         <hr/>
         {%for blog in blogs.all%}
-            <a href=""><h1>{{blog.title}}</h1></a>
+            <a href="{% url 'detail' blog.id %}"><h1>{{blog.title}}</h1></a>
             {{blog.pub_date_formatted}}
             <br/>
             <img src="{{blog.image.url}}" class="img-fluid" height=200 width=200/>
